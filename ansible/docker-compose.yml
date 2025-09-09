@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypass
+      POSTGRES_DB: mydb
+    restart: unless-stopped
+
+  web:
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+    depends_on:
+      - db
+    ports:
+      - "0.0.0.0:8080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+ 

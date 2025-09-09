@@ -1,0 +1,10 @@
+- name: Copy docker-compose file
+  copy:
+    src: " /home/george/terraform-ansible-docker-stack/docker-compose.yml"
+    dest: /opt/app/docker-compose.yml
+    mode: '0644'
+
+- name: Bring up stack
+  command: docker compose -f /home/ubuntu/docker-compose.yml up -d
+  args:
+    chdir: /home/ubuntu

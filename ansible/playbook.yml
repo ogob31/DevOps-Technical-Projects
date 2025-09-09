@@ -1,0 +1,16 @@
+---
+- hosts: web
+  become: yes
+  vars:
+    ansible_python_interpreter:  /home/george/terraform-ansible-docker-stack
+
+  pre_tasks:
+    - name: Wait for unattended-upgrades to finish
+      shell: while fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do sleep 2; done
+      changed_when: false
+
+  tasks:
+    - import_tasks: roles/docker/tasks/main.yml
+    - import_tasks: roles/app/tasks/main.yml
+
+
