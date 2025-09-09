@@ -1,5 +1,6 @@
-# DevOPs Technical Projects, an SOP and learning guide
-## Title : An Automated Deployment of a .NET & PostgreSQL
+# DevOPs Technical Projects
+## Title : Automated Deployment of a .NET & PostgreSQL
+### Terraform-ansible-docker
 ## Author: [George Osei Bonsu]
 ## Date : [09.09.2025]
 
